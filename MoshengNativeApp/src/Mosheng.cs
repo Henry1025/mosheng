@@ -337,7 +337,6 @@ namespace Mosheng
         private readonly Button saveButton = new Button();
         private readonly Button shortcutButton = new Button();
         private readonly Label keyState = new Label();
-        private readonly Label note = new Label();
         private bool dragging;
         private Point dragStart;
         private int shortcutVk;
@@ -350,9 +349,9 @@ namespace Mosheng
             StartPosition = FormStartPosition.CenterScreen;
             FormBorderStyle = FormBorderStyle.None;
             ShowIcon = false;
-            Size = new Size(460, 332);
-            MinimumSize = new Size(460, 332);
-            MaximumSize = new Size(460, 332);
+            Size = new Size(460, 350);
+            MinimumSize = new Size(460, 350);
+            MaximumSize = new Size(460, 350);
             BackColor = Color.White;
             Font = Fonts.Ui(9f, FontStyle.Regular);
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer, true);
@@ -370,8 +369,8 @@ namespace Mosheng
             Controls.Add(NewLabel("MOSHENG", 32, 30, 160, 18, 8f, FontStyle.Bold, Palette.Muted));
             Controls.Add(NewLabel("墨声", 32, 50, 120, 34, 22f, FontStyle.Bold, Palette.Ink));
             Controls.Add(NewLabel("语音输入设置", 32, 94, 180, 24, 15f, FontStyle.Bold, Palette.Ink));
-            Controls.Add(NewLabel("输入智谱 API Key 后，即可长按快捷键说话。", 32, 122, 330, 22, 9f, FontStyle.Regular, Palette.Muted));
-            Controls.Add(NewLabel("API Key", 32, 158, 140, 18, 8f, FontStyle.Bold, Palette.Muted));
+            Controls.Add(NewLabel("输入 API Key 后，长按快捷键说话。", 32, 122, 330, 22, 9f, FontStyle.Regular, Palette.Muted));
+            Controls.Add(NewLabel("API Key", 32, 156, 140, 18, 8f, FontStyle.Bold, Palette.Muted));
 
             apiKeyBox.PasswordChar = '*';
             apiKeyBox.Font = Fonts.Ui(10.5f, FontStyle.Regular);
@@ -379,7 +378,7 @@ namespace Mosheng
             apiKeyBox.BackColor = Color.White;
             apiKeyBox.SetBounds(12, 9, 372, 20);
             apiKeyFrame.BackColor = Color.White;
-            apiKeyFrame.SetBounds(32, 180, 396, 38);
+            apiKeyFrame.SetBounds(32, 178, 396, 38);
             apiKeyFrame.Paint += delegate(object sender, PaintEventArgs e)
             {
                 using (Pen pen = new Pen(Color.FromArgb(185, 185, 185), 1f))
@@ -391,7 +390,7 @@ namespace Mosheng
             Controls.Add(apiKeyFrame);
 
             saveButton.Text = "保存";
-            saveButton.SetBounds(32, 236, 96, 34);
+            saveButton.SetBounds(32, 234, 96, 34);
             StyleButton(saveButton, Color.Black, Color.White, false);
             saveButton.Click += delegate
             {
@@ -403,26 +402,20 @@ namespace Mosheng
             };
             Controls.Add(saveButton);
 
-            keyState.SetBounds(144, 244, 180, 20);
+            keyState.SetBounds(144, 242, 180, 20);
             keyState.Font = Fonts.Ui(8f, FontStyle.Bold);
             keyState.ForeColor = Palette.Muted;
             Controls.Add(keyState);
 
-            Controls.Add(NewLabel("唤醒方式", 32, 294, 90, 18, 8f, FontStyle.Bold, Palette.Muted));
+            Controls.Add(NewLabel("唤醒方式", 32, 296, 90, 18, 8f, FontStyle.Bold, Palette.Muted));
             shortcutButton.TextAlign = ContentAlignment.MiddleLeft;
-            shortcutButton.SetBounds(116, 285, 188, 34);
+            shortcutButton.SetBounds(116, 286, 188, 34);
             StyleButton(shortcutButton, Color.FromArgb(248, 248, 248), Palette.Ink, true);
             shortcutButton.Click += delegate
             {
                 if (ShortcutCaptureRequested != null) ShortcutCaptureRequested(this, EventArgs.Empty);
             };
             Controls.Add(shortcutButton);
-
-            note.SetBounds(32, 276, 360, 16);
-            note.Font = Fonts.Ui(8f, FontStyle.Regular);
-            note.ForeColor = Palette.Muted;
-            note.Text = "仅调用智谱 GLM-ASR-2512 语音转文字";
-            Controls.Add(note);
 
             MouseDown += OnDragMouseDown;
             MouseMove += OnDragMouseMove;
