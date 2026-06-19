@@ -19,11 +19,14 @@ if ($LASTEXITCODE -ne 0) {
 $fullName = "$Owner/$Repo"
 $remoteUrl = "https://github.com/$fullName.git"
 
-if (-not (git remote get-url origin 2>$null)) {
-  $exists = $true
+$remotes = @(git remote)
+$hasOrigin = $remotes -contains "origin"
+
+if (-not $hasOrigin) {
+  $exists = $false
   gh repo view $fullName *> $null
-  if ($LASTEXITCODE -ne 0) {
-    $exists = $false
+  if ($LASTEXITCODE -eq 0) {
+    $exists = $true
   }
 
   if (-not $exists) {
