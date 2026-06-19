@@ -24,7 +24,7 @@ $hasOrigin = $remotes -contains "origin"
 
 if (-not $hasOrigin) {
   $exists = $false
-  gh repo view $fullName *> $null
+  cmd.exe /c "gh repo view $fullName >nul 2>nul"
   if ($LASTEXITCODE -eq 0) {
     $exists = $true
   }
