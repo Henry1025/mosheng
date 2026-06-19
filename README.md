@@ -38,6 +38,20 @@ MoshengNativeApp\dist\Mosheng.exe
 
 > 当前版本使用 Windows 自带 .NET Framework 编译器构建，方便没有 .NET SDK 的机器也能生成 EXE。正式产品建议迁移到 WPF / WinUI，以获得更好的窗口边缘、字体和动效。
 
+## 发布到 GitHub
+
+如果你是仓库维护者，可以先登录 GitHub CLI：
+
+```powershell
+gh auth login
+```
+
+然后发布：
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\publish-github.ps1
+```
+
 ## 项目结构
 
 ```text
@@ -50,6 +64,9 @@ docs/
   ARCHITECTURE.md      产品和技术架构
   PRIVACY.md           隐私和 API Key 说明
   ROADMAP.md           路线图
+
+scripts/
+  publish-github.ps1   创建 GitHub 仓库并推送
 
 index.html             早期 UI 评审稿
 app.js
