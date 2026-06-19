@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>墨声 Demo</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="phase-rail">
+        <div>
+          <p class="eyebrow">MOSHENG</p>
+          <h1>墨声</h1>
+          <p class="rail-hint">评审视图 · 左侧不属于真实产品</p>
+        </div>
+
+        <nav class="phase-tabs" aria-label="Demo phases">
+          <button class="phase-tab active" type="button" data-phase="setup">
+            <span>Phase 1</span>
+            安装后设置
+          </button>
+          <button class="phase-tab" type="button" data-phase="input">
+            <span>Phase 2</span>
+            实际输入中
+          </button>
+        </nav>
+
+        <div class="rail-card">
+          <span class="panel-label">当前快捷键</span>
+          <strong id="shortcutSummary">长按左 Shift</strong>
+        </div>
+
+        <div class="rail-card">
+          <span class="panel-label">当前引擎</span>
+          <strong id="providerSummary">识别: 云端 AI 识别</strong>
+        </div>
+      </aside>
+
+      <section class="phase-main">
+        <section class="phase-view setup-view active" data-view="setup" aria-label="安装后设置">
+          <div class="setup-window">
+            <header class="window-head">
+              <div>
+                <p class="eyebrow">SETUP</p>
+                <h2>墨声设置</h2>
+              </div>
+              <button class="icon-button" type="button" data-phase="input" aria-label="进入输入状态" title="进入输入状态">
+                <span aria-hidden="true">↵</span>
+              </button>
+            </header>
+
+            <section class="api-panel">
+              <p class="eyebrow">VOICE API</p>
+              <h3>输入 API Key</h3>
+              <p class="card-note">保存后即可启动语音输入。</p>
+
+              <label class="api-key-field" for="providerCredentialInput">
+                <span id="providerCredentialLabel">API Key</span>
+                <input id="providerCredentialInput" type="password" placeholder="sk-..." autocomplete="off" spellcheck="false" />
+              </label>
+
+              <div class="api-actions">
+                <button class="primary-button" id="credentialSave" type="button">保存并开始使用</button>
+                <strong id="credentialState">未保存</strong>
+              </div>
+
+              <button class="shortcut-mini" id="shortcutCapture" type="button" aria-label="修改输入快捷键">
+                <span>快捷键</span>
+                <strong id="shortcutLabel">长按左 Shift</strong>
+              </button>
+            </section>
+          </div>
+        </section>
+
+        <section class="phase-view input-view" data-view="input" aria-label="实际输入中">
+          <div class="app-mock">
+            <header class="mock-titlebar">
+              <div>
+                <span class="window-dot"></span>
+                <span>Notes</span>
+              </div>
+              <button class="icon-button" id="resetButton" type="button" aria-label="重置" title="重置">
+                <span aria-hidden="true">R</span>
+              </button>
+            </header>
+
+            <div class="document-area">
+              <p class="eyebrow">CURRENT APP</p>
+              <textarea id="targetInput" spellcheck="false">今天要确认语音输入法的真实运行态：
+
+1. 用户按下自己设定的快捷键。
+2. 屏幕上只出现一个轻量悬浮输入栏。
+3. 识别成功后，文字进入当前光标所在位置。</textarea>
+            </div>
+
+            <div class="floating-ime" id="floatingIme">
+              <button class="voice-orb" id="recordButton" type="button" aria-label="按住左 Shift 语音输入">
+                <span class="pill-action pill-cancel" aria-hidden="true">×</span>
+                <span class="wave-mark" aria-hidden="true">
+                  <i></i><i></i><i></i><i></i><i></i><i></i>
+                </span>
+                <span class="pill-action pill-confirm" aria-hidden="true">✓</span>
+                <span class="sr-only" id="recordLabel">按住左 Shift</span>
+              </button>
+
+              <div class="voice-confirm">
+                <span class="status-dot" id="statusDot"></span>
+                <strong id="statusText">待机</strong>
+                <textarea id="transcript" class="voice-result" spellcheck="false" placeholder="识别结果"></textarea>
+                <div class="action-row">
+                  <button class="primary-button" id="insertButton" type="button">确认</button>
+                  <button class="ghost-button" id="copyButton" type="button">复制</button>
+                  <button class="ghost-button" id="cancelButton" type="button">取消</button>
+                </div>
+                <div class="signal" id="signalBars" aria-hidden="true">
+                  <i></i><i></i><i></i><i></i><i></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="./app.js?v=shortcut-mini-1"></script>
+  </body>
+</html>

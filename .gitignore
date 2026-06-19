@@ -1,0 +1,17 @@
+# build outputs
+MoshengNativeApp/dist/
+bin/
+obj/
+
+# local runtime data
+*.log
+*.tmp
+
+# dependencies
+node_modules/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
