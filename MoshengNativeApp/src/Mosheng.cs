@@ -331,11 +331,15 @@ namespace Mosheng
     {
         public event EventHandler<SaveSettingsEventArgs> SaveRequested;
         public event EventHandler ShortcutCaptureRequested;
+        private readonly Label closeButton = new Label();
         private readonly TextBox apiKeyBox = new TextBox();
+        private readonly Panel apiKeyFrame = new Panel();
         private readonly Button saveButton = new Button();
         private readonly Button shortcutButton = new Button();
         private readonly Label keyState = new Label();
         private readonly Label note = new Label();
+        private bool dragging;
+        private Point dragStart;
         private int shortcutVk;
 
         public bool IsCapturingShortcut { get; private set; }
@@ -344,27 +348,51 @@ namespace Mosheng
         {
             Text = "墨声";
             StartPosition = FormStartPosition.CenterScreen;
-            Size = new Size(520, 392);
-            MinimumSize = new Size(480, 360);
+            FormBorderStyle = FormBorderStyle.None;
+            ShowIcon = false;
+            Size = new Size(460, 332);
+            MinimumSize = new Size(460, 332);
+            MaximumSize = new Size(460, 332);
             BackColor = Color.White;
             Font = Fonts.Ui(9f, FontStyle.Regular);
+            SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer, true);
             shortcutVk = settings.ShortcutVk;
 
-            Controls.Add(NewLabel("MOSHENG", 28, 24, 160, 18, 8f, FontStyle.Bold, Palette.Muted));
-            Controls.Add(NewLabel("墨声", 28, 44, 220, 50, 28f, FontStyle.Bold, Palette.Ink));
-            Controls.Add(NewLabel("输入智谱 API Key", 28, 124, 300, 30, 18f, FontStyle.Bold, Palette.Ink));
-            Controls.Add(NewLabel("保存后即可用快捷键启动语音输入。", 28, 158, 360, 24, 9f, FontStyle.Regular, Palette.Muted));
-            Controls.Add(NewLabel("API Key", 28, 194, 180, 18, 8f, FontStyle.Bold, Palette.Muted));
+            closeButton.Text = "×";
+            closeButton.TextAlign = ContentAlignment.MiddleCenter;
+            closeButton.Font = Fonts.Ui(13f, FontStyle.Regular);
+            closeButton.ForeColor = Color.FromArgb(120, 120, 120);
+            closeButton.SetBounds(418, 18, 24, 24);
+            closeButton.Cursor = Cursors.Hand;
+            closeButton.Click += delegate { Hide(); };
+            Controls.Add(closeButton);
+
+            Controls.Add(NewLabel("MOSHENG", 32, 30, 160, 18, 8f, FontStyle.Bold, Palette.Muted));
+            Controls.Add(NewLabel("墨声", 32, 50, 120, 34, 22f, FontStyle.Bold, Palette.Ink));
+            Controls.Add(NewLabel("语音输入设置", 32, 94, 180, 24, 15f, FontStyle.Bold, Palette.Ink));
+            Controls.Add(NewLabel("输入智谱 API Key 后，即可长按快捷键说话。", 32, 122, 330, 22, 9f, FontStyle.Regular, Palette.Muted));
+            Controls.Add(NewLabel("API Key", 32, 158, 140, 18, 8f, FontStyle.Bold, Palette.Muted));
 
             apiKeyBox.PasswordChar = '*';
-            apiKeyBox.Font = Fonts.Ui(11f, FontStyle.Regular);
-            apiKeyBox.BorderStyle = BorderStyle.FixedSingle;
-            apiKeyBox.SetBounds(28, 216, 448, 34);
-            Controls.Add(apiKeyBox);
+            apiKeyBox.Font = Fonts.Ui(10.5f, FontStyle.Regular);
+            apiKeyBox.BorderStyle = BorderStyle.None;
+            apiKeyBox.BackColor = Color.White;
+            apiKeyBox.SetBounds(12, 9, 372, 20);
+            apiKeyFrame.BackColor = Color.White;
+            apiKeyFrame.SetBounds(32, 180, 396, 38);
+            apiKeyFrame.Paint += delegate(object sender, PaintEventArgs e)
+            {
+                using (Pen pen = new Pen(Color.FromArgb(185, 185, 185), 1f))
+                {
+                    e.Graphics.DrawRectangle(pen, 0, 0, apiKeyFrame.Width - 1, apiKeyFrame.Height - 1);
+                }
+            };
+            apiKeyFrame.Controls.Add(apiKeyBox);
+            Controls.Add(apiKeyFrame);
 
-            saveButton.Text = "保存并开始使用";
-            saveButton.SetBounds(28, 268, 158, 38);
-            StyleButton(saveButton, Color.Black, Color.White);
+            saveButton.Text = "保存";
+            saveButton.SetBounds(32, 236, 96, 34);
+            StyleButton(saveButton, Color.Black, Color.White, false);
             saveButton.Click += delegate
             {
                 if (SaveRequested != null)
@@ -375,25 +403,37 @@ namespace Mosheng
             };
             Controls.Add(saveButton);
 
-            keyState.SetBounds(200, 276, 220, 24);
+            keyState.SetBounds(144, 244, 180, 20);
             keyState.Font = Fonts.Ui(8f, FontStyle.Bold);
             keyState.ForeColor = Palette.Muted;
             Controls.Add(keyState);
 
+            Controls.Add(NewLabel("唤醒方式", 32, 294, 90, 18, 8f, FontStyle.Bold, Palette.Muted));
             shortcutButton.TextAlign = ContentAlignment.MiddleLeft;
-            shortcutButton.SetBounds(28, 322, 448, 38);
-            StyleButton(shortcutButton, Color.FromArgb(250, 250, 250), Palette.Ink);
+            shortcutButton.SetBounds(116, 285, 188, 34);
+            StyleButton(shortcutButton, Color.FromArgb(248, 248, 248), Palette.Ink, true);
             shortcutButton.Click += delegate
             {
                 if (ShortcutCaptureRequested != null) ShortcutCaptureRequested(this, EventArgs.Empty);
             };
             Controls.Add(shortcutButton);
 
-            note.SetBounds(28, 364, 420, 18);
+            note.SetBounds(32, 276, 360, 16);
             note.Font = Fonts.Ui(8f, FontStyle.Regular);
             note.ForeColor = Palette.Muted;
-            note.Text = "当前仅调用智谱 GLM-ASR-2512 语音转文字。";
+            note.Text = "仅调用智谱 GLM-ASR-2512 语音转文字";
             Controls.Add(note);
+
+            MouseDown += OnDragMouseDown;
+            MouseMove += OnDragMouseMove;
+            MouseUp += OnDragMouseUp;
+            foreach (Control control in Controls)
+            {
+                if (control is TextBox || control is Button) continue;
+                control.MouseDown += OnDragMouseDown;
+                control.MouseMove += OnDragMouseMove;
+                control.MouseUp += OnDragMouseUp;
+            }
 
             FormClosing += delegate(object sender, FormClosingEventArgs e)
             {
@@ -406,14 +446,14 @@ namespace Mosheng
         public void RefreshFrom(Settings settings)
         {
             shortcutVk = settings.ShortcutVk;
-            shortcutButton.Text = "快捷键        " + settings.ShortcutLabel;
+            shortcutButton.Text = settings.ShortcutLabel;
             keyState.Text = String.IsNullOrEmpty(settings.KeyTail) ? "未保存" : "已保存 · " + settings.KeyTail;
         }
 
         public void BeginShortcutCapture()
         {
             IsCapturingShortcut = true;
-            shortcutButton.Text = "快捷键        按下想使用的键";
+            shortcutButton.Text = "按下想使用的键";
             shortcutButton.BackColor = Color.Black;
             shortcutButton.ForeColor = Color.White;
         }
@@ -424,6 +464,38 @@ namespace Mosheng
             RefreshFrom(settings);
             shortcutButton.BackColor = Color.FromArgb(250, 250, 250);
             shortcutButton.ForeColor = Palette.Ink;
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+            using (Pen border = new Pen(Color.FromArgb(216, 216, 216), 1f))
+            {
+                e.Graphics.DrawRectangle(border, 0, 0, Width - 1, Height - 1);
+            }
+        }
+
+        private void OnDragMouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Left) return;
+            dragging = true;
+            Control source = sender as Control;
+            dragStart = source == null ? PointToScreen(e.Location) : source.PointToScreen(e.Location);
+        }
+
+        private void OnDragMouseMove(object sender, MouseEventArgs e)
+        {
+            if (!dragging) return;
+            Control source = sender as Control;
+            Point current = source == null ? PointToScreen(e.Location) : source.PointToScreen(e.Location);
+            Location = new Point(Location.X + current.X - dragStart.X, Location.Y + current.Y - dragStart.Y);
+            dragStart = current;
+        }
+
+        private void OnDragMouseUp(object sender, MouseEventArgs e)
+        {
+            dragging = false;
         }
 
         private static Label NewLabel(string text, int x, int y, int width, int height, float size, FontStyle style, Color color)
@@ -437,14 +509,14 @@ namespace Mosheng
             return label;
         }
 
-        private static void StyleButton(Button button, Color back, Color fore)
+        private static void StyleButton(Button button, Color back, Color fore, bool bordered)
         {
             button.FlatStyle = FlatStyle.Flat;
             button.FlatAppearance.BorderColor = Palette.Ink;
-            button.FlatAppearance.BorderSize = 1;
+            button.FlatAppearance.BorderSize = bordered ? 1 : 0;
             button.BackColor = back;
             button.ForeColor = fore;
-            button.Font = Fonts.Ui(9f, FontStyle.Bold);
+            button.Font = Fonts.Ui(9f, bordered ? FontStyle.Regular : FontStyle.Bold);
             button.Cursor = Cursors.Hand;
         }
     }
