@@ -75,6 +75,8 @@ namespace Mosheng
 
             settingsForm.SaveRequested += OnSaveRequested;
             settingsForm.ShortcutCaptureRequested += OnShortcutCaptureRequested;
+            settingsForm.ShortcutResetRequested += OnShortcutResetRequested;
+            settingsForm.OverlayPreviewRequested += OnOverlayPreviewRequested;
 
             trayIcon.Icon = SystemIcons.Application;
             trayIcon.Text = "墨声";
@@ -131,6 +133,20 @@ namespace Mosheng
         private void OnShortcutCaptureRequested(object sender, EventArgs args)
         {
             settingsForm.BeginShortcutCapture();
+        }
+
+        private void OnShortcutResetRequested(object sender, EventArgs args)
+        {
+            settings.ShortcutVk = 0xA0;
+            settings.ShortcutLabel = KeyNames.Label(settings.ShortcutVk);
+            settingsStore.Save(settings);
+            settingsForm.RefreshFrom(settings);
+        }
+
+        private void OnOverlayPreviewRequested(object sender, EventArgs args)
+        {
+            overlay.ShowMode(OverlayMode.Recording);
+            overlay.HideLater();
         }
 
         private void OnKeyboardAction(int vkCode, bool isDown)
@@ -331,11 +347,15 @@ namespace Mosheng
     {
         public event EventHandler<SaveSettingsEventArgs> SaveRequested;
         public event EventHandler ShortcutCaptureRequested;
+        public event EventHandler ShortcutResetRequested;
+        public event EventHandler OverlayPreviewRequested;
         private readonly Label closeButton = new Label();
         private readonly TextBox apiKeyBox = new TextBox();
         private readonly Panel apiKeyFrame = new Panel();
         private readonly Button saveButton = new Button();
         private readonly Button shortcutButton = new Button();
+        private readonly Button resetShortcutButton = new Button();
+        private readonly Button previewButton = new Button();
         private readonly Label keyState = new Label();
         private bool dragging;
         private Point dragStart;
@@ -349,9 +369,9 @@ namespace Mosheng
             StartPosition = FormStartPosition.CenterScreen;
             FormBorderStyle = FormBorderStyle.None;
             ShowIcon = false;
-            Size = new Size(460, 350);
-            MinimumSize = new Size(460, 350);
-            MaximumSize = new Size(460, 350);
+            Size = new Size(460, 384);
+            MinimumSize = new Size(460, 384);
+            MaximumSize = new Size(460, 384);
             BackColor = Color.White;
             Font = Fonts.Ui(9f, FontStyle.Regular);
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer, true);
@@ -416,6 +436,24 @@ namespace Mosheng
                 if (ShortcutCaptureRequested != null) ShortcutCaptureRequested(this, EventArgs.Empty);
             };
             Controls.Add(shortcutButton);
+
+            resetShortcutButton.Text = "恢复默认";
+            resetShortcutButton.SetBounds(316, 286, 92, 34);
+            StyleButton(resetShortcutButton, Color.White, Palette.Ink, true);
+            resetShortcutButton.Click += delegate
+            {
+                if (ShortcutResetRequested != null) ShortcutResetRequested(this, EventArgs.Empty);
+            };
+            Controls.Add(resetShortcutButton);
+
+            previewButton.Text = "预览输入胶囊";
+            previewButton.SetBounds(32, 334, 128, 30);
+            StyleButton(previewButton, Color.White, Palette.Muted, true);
+            previewButton.Click += delegate
+            {
+                if (OverlayPreviewRequested != null) OverlayPreviewRequested(this, EventArgs.Empty);
+            };
+            Controls.Add(previewButton);
 
             MouseDown += OnDragMouseDown;
             MouseMove += OnDragMouseMove;
