@@ -1,5 +1,6 @@
 # build outputs
 MoshengNativeApp/dist/
+releases/
 bin/
 obj/
 

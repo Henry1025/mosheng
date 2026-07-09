@@ -3,126 +3,126 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>墨声 Demo</title>
+    <title>墨声 UI Review</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <main class="app-shell">
-      <aside class="phase-rail">
+    <main class="review-shell">
+      <aside class="review-rail" aria-label="评审控制台">
         <div>
           <p class="eyebrow">MOSHENG</p>
           <h1>墨声</h1>
-          <p class="rail-hint">评审视图 · 左侧不属于真实产品</p>
+          <p class="rail-copy">Codex UI review · 对齐 GitHub 当前 Windows 版</p>
         </div>
 
-        <nav class="phase-tabs" aria-label="Demo phases">
-          <button class="phase-tab active" type="button" data-phase="setup">
-            <span>Phase 1</span>
-            安装后设置
+        <nav class="review-tabs" aria-label="UI states">
+          <button class="review-tab active" type="button" data-view="settings">
+            <span>01</span>
+            设置窗口
           </button>
-          <button class="phase-tab" type="button" data-phase="input">
-            <span>Phase 2</span>
-            实际输入中
+          <button class="review-tab" type="button" data-view="overlay">
+            <span>02</span>
+            输入胶囊
+          </button>
+          <button class="review-tab" type="button" data-view="flow">
+            <span>03</span>
+            输入流程
           </button>
         </nav>
 
-        <div class="rail-card">
-          <span class="panel-label">当前快捷键</span>
-          <strong id="shortcutSummary">长按左 Shift</strong>
-        </div>
+        <section class="rail-card">
+          <span>GitHub</span>
+          <strong>Henry1025 / mosheng</strong>
+        </section>
 
-        <div class="rail-card">
-          <span class="panel-label">当前引擎</span>
-          <strong id="providerSummary">识别: 云端 AI 识别</strong>
-        </div>
+        <section class="rail-card">
+          <span>当前快捷键</span>
+          <strong id="shortcutSummary">长按左 Shift</strong>
+        </section>
       </aside>
 
-      <section class="phase-main">
-        <section class="phase-view setup-view active" data-view="setup" aria-label="安装后设置">
-          <div class="setup-window">
-            <header class="window-head">
+      <section class="review-stage">
+        <section class="review-view active" data-panel="settings" aria-label="设置窗口">
+          <div class="stage-caption">
+            <p class="eyebrow">WINDOWS APP · SETTINGS</p>
+            <h2>设置窗口</h2>
+          </div>
+
+          <article class="native-settings-window" aria-label="墨声设置窗口">
+            <button class="window-close" type="button" aria-label="关闭">×</button>
+            <p class="eyebrow brand-kicker">MOSHENG</p>
+            <h3 class="brand-title">墨声</h3>
+            <h4>语音输入设置</h4>
+            <p class="helper">输入智谱 API Key 后，长按快捷键说话。</p>
+
+            <label class="field-label" for="apiKeyInput">智谱 API Key</label>
+            <div class="api-field saved" id="apiField">
+              <input id="apiKeyInput" class="api-input" type="password" value="" aria-label="API Key" />
+              <span class="api-saved-signal" aria-hidden="true">•••• •••• ••••  已保存</span>
+            </div>
+
+            <div class="save-row">
+              <button class="primary-button saved" type="button" id="saveKeyButton">已保存</button>
+            </div>
+
+            <div class="shortcut-row">
               <div>
-                <p class="eyebrow">SETUP</p>
-                <h2>墨声设置</h2>
+                <span class="field-label">长按说话，松开输入</span>
+                <strong id="shortcutValue">长按左 Shift</strong>
               </div>
-              <button class="icon-button" type="button" data-phase="input" aria-label="进入输入状态" title="进入输入状态">
-                <span aria-hidden="true">↵</span>
-              </button>
-            </header>
+              <button class="shortcut-button" type="button" id="shortcutButton">更改</button>
+            </div>
+          </article>
+        </section>
 
-            <section class="api-panel">
-              <p class="eyebrow">VOICE API</p>
-              <h3>输入 API Key</h3>
-              <p class="card-note">保存后即可启动语音输入。</p>
+        <section class="review-view" data-panel="overlay" aria-label="输入胶囊">
+          <div class="stage-caption">
+            <p class="eyebrow">FLOATING INPUT</p>
+            <h2>输入胶囊</h2>
+          </div>
 
-              <label class="api-key-field" for="providerCredentialInput">
-                <span id="providerCredentialLabel">API Key</span>
-                <input id="providerCredentialInput" type="password" placeholder="sk-..." autocomplete="off" spellcheck="false" />
-              </label>
+          <div class="state-switcher" role="tablist" aria-label="输入状态">
+            <button class="state-chip active" type="button" data-overlay="recording">按住中</button>
+            <button class="state-chip" type="button" data-overlay="processing">松开后消失</button>
+            <button class="state-chip" type="button" data-overlay="success">已输入</button>
+            <button class="state-chip" type="button" data-overlay="error">失败</button>
+          </div>
 
-              <div class="api-actions">
-                <button class="primary-button" id="credentialSave" type="button">保存并开始使用</button>
-                <strong id="credentialState">未保存</strong>
-              </div>
-
-              <button class="shortcut-mini" id="shortcutCapture" type="button" aria-label="修改输入快捷键">
-                <span>快捷键</span>
-                <strong id="shortcutLabel">长按左 Shift</strong>
-              </button>
-            </section>
+          <div class="overlay-canvas">
+            <div class="floating-capsule recording" id="floatingCapsule" aria-label="输入胶囊">
+              <span class="waveform" aria-hidden="true">
+                <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+              </span>
+            </div>
           </div>
         </section>
 
-        <section class="phase-view input-view" data-view="input" aria-label="实际输入中">
-          <div class="app-mock">
-            <header class="mock-titlebar">
-              <div>
-                <span class="window-dot"></span>
-                <span>Notes</span>
-              </div>
-              <button class="icon-button" id="resetButton" type="button" aria-label="重置" title="重置">
-                <span aria-hidden="true">R</span>
-              </button>
+        <section class="review-view" data-panel="flow" aria-label="输入流程">
+          <div class="stage-caption">
+            <p class="eyebrow">REAL INPUT FLOW</p>
+            <h2>输入时的桌面状态</h2>
+          </div>
+
+          <div class="desktop-mock">
+            <header>
+              <span class="window-dot"></span>
+              <strong>Notes</strong>
             </header>
+            <textarea spellcheck="false">这里模拟当前 Windows 光标所在的应用。
 
-            <div class="document-area">
-              <p class="eyebrow">CURRENT APP</p>
-              <textarea id="targetInput" spellcheck="false">今天要确认语音输入法的真实运行态：
-
-1. 用户按下自己设定的快捷键。
-2. 屏幕上只出现一个轻量悬浮输入栏。
-3. 识别成功后，文字进入当前光标所在位置。</textarea>
-            </div>
-
-            <div class="floating-ime" id="floatingIme">
-              <button class="voice-orb" id="recordButton" type="button" aria-label="按住左 Shift 语音输入">
-                <span class="pill-action pill-cancel" aria-hidden="true">×</span>
-                <span class="wave-mark" aria-hidden="true">
-                  <i></i><i></i><i></i><i></i><i></i><i></i>
-                </span>
-                <span class="pill-action pill-confirm" aria-hidden="true">✓</span>
-                <span class="sr-only" id="recordLabel">按住左 Shift</span>
-              </button>
-
-              <div class="voice-confirm">
-                <span class="status-dot" id="statusDot"></span>
-                <strong id="statusText">待机</strong>
-                <textarea id="transcript" class="voice-result" spellcheck="false" placeholder="识别结果"></textarea>
-                <div class="action-row">
-                  <button class="primary-button" id="insertButton" type="button">确认</button>
-                  <button class="ghost-button" id="copyButton" type="button">复制</button>
-                  <button class="ghost-button" id="cancelButton" type="button">取消</button>
-                </div>
-                <div class="signal" id="signalBars" aria-hidden="true">
-                  <i></i><i></i><i></i><i></i><i></i>
-                </div>
-              </div>
+1. 用户长按左 Shift。
+2. 屏幕底部出现一个很小的黑色输入胶囊。
+3. 松开后胶囊消失，后台识别并把文字粘贴到当前光标。</textarea>
+            <div class="floating-capsule recording flow-capsule" aria-label="输入中胶囊">
+              <span class="waveform" aria-hidden="true">
+                <i></i><i></i><i></i><i></i><i></i><i></i>
+              </span>
             </div>
           </div>
         </section>
       </section>
     </main>
 
-    <script src="./app.js?v=shortcut-mini-1"></script>
+    <script src="./app.js"></script>
   </body>
 </html>

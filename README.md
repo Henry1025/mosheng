@@ -1,6 +1,6 @@
 # 墨声
 
-墨声是一个 Windows-first 的 AI 语音输入项目。它的目标不是做一个聊天助手，而是做一个很轻的本地输入工具：按住快捷键说话，松开后把文字输入到当前光标。
+墨声是一个 Windows-first 的 AI 语音输入项目。它的目标不是做一个聊天助手，而是做一个很轻的本地输入工具：按一次快捷键开始说话，再按一次结束，随后把文字输入到当前光标。
 
 当前主线是 **Windows 本地 EXE**，GitHub 仓库用于开源分发、收集反馈和发布安装包。浏览器页面保留为早期 UI 评审稿。
 
@@ -8,8 +8,9 @@
 
 - Windows 本地运行，不依赖浏览器页面
 - 托盘常驻
-- 默认长按左 Shift 录音
+- 默认按 Ctrl + Space 开始/结束录音
 - 调用智谱 `GLM-ASR-2512` 做语音转文字
+- 高置信分点表达会调用智谱 `GLM-5.2` 做智能排版
 - 自动输入到当前光标位置
 - API Key 使用 Windows DPAPI 保存在本机
 - 悬浮输入条采用黑白极简胶囊 UI
@@ -52,6 +53,26 @@ gh auth login
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\publish-github.ps1
 ```
 
+## 打 Alpha 灰度包
+
+生成可发给测试朋友的 zip：
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\package-alpha.ps1 -Version v0.1.0-alpha.1
+```
+
+产物会生成在：
+
+```text
+releases\Mosheng-v0.1.0-alpha.1-windows-x64.zip
+```
+
+灰度测试说明见：
+
+```text
+docs\ALPHA_TESTING.md
+```
+
 ## 项目结构
 
 ```text
@@ -64,9 +85,12 @@ docs/
   ARCHITECTURE.md      产品和技术架构
   PRIVACY.md           隐私和 API Key 说明
   ROADMAP.md           路线图
+  ALPHA_TESTING.md     Alpha 灰度测试说明
+  release/             打包进 zip 的测试者说明
 
 scripts/
   publish-github.ps1   创建 GitHub 仓库并推送
+  package-alpha.ps1    生成 Alpha 测试 zip
 
 index.html             早期 UI 评审稿
 app.js

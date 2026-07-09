@@ -1,0 +1,248 @@
+[
+  {
+    "category": "listing_capital_markets",
+    "terms": [
+      { "canonical": "IPO", "aliases": ["首次公开发行", "上市"], "wrong_asr": ["爱皮欧", "艾皮欧"], "local_replace": true },
+      { "canonical": "递表", "aliases": ["提交上市申请"], "wrong_asr": ["地表", "递标"], "local_replace": false },
+      { "canonical": "聆讯", "aliases": ["上市聆讯"], "wrong_asr": ["聆训", "聆迅"], "local_replace": false },
+      { "canonical": "招股书", "aliases": ["招股说明书", "prospectus"], "wrong_asr": ["招股数", "招股述"], "local_replace": false },
+      { "canonical": "路演", "aliases": ["roadshow"], "wrong_asr": ["路言", "路艳"], "local_replace": true },
+      { "canonical": "簿记建档", "aliases": ["bookbuilding"], "wrong_asr": ["不记建档", "补记建档"], "local_replace": false },
+      { "canonical": "基石投资者", "aliases": ["cornerstone investor"], "wrong_asr": ["及时投资者", "基实投资者"], "local_replace": false },
+      { "canonical": "绿鞋机制", "aliases": ["超额配售权", "greenshoe"], "wrong_asr": ["绿色机制", "绿血机制"], "local_replace": false },
+      { "canonical": "承销", "aliases": ["underwriting"], "wrong_asr": ["成销", "承消"], "local_replace": true },
+      { "canonical": "保荐人", "aliases": ["sponsor"], "wrong_asr": ["保健人", "保险人"], "local_replace": false },
+      { "canonical": "联席保荐人", "aliases": ["joint sponsor"], "wrong_asr": ["联系保荐人"], "local_replace": false },
+      { "canonical": "全球发售", "aliases": ["global offering"], "wrong_asr": ["全球发手"], "local_replace": false },
+      { "canonical": "公开发售", "aliases": ["public offering"], "wrong_asr": ["公开发手"], "local_replace": false },
+      { "canonical": "国际配售", "aliases": ["international placing"], "wrong_asr": ["国际配收"], "local_replace": false },
+      { "canonical": "配售", "aliases": ["placing"], "wrong_asr": ["配收"], "local_replace": false },
+      { "canonical": "增发", "aliases": ["follow-on offering"], "wrong_asr": ["蒸发"], "local_replace": false },
+      { "canonical": "二次上市", "aliases": ["secondary listing"], "wrong_asr": ["二次上世"], "local_replace": false },
+      { "canonical": "双重主要上市", "aliases": ["dual primary listing"], "wrong_asr": ["双重主义上市"], "local_replace": false }
+    ]
+  },
+  {
+    "category": "hong_kong_equity",
+    "terms": [
+      { "canonical": "港交所", "aliases": ["香港交易所", "HKEX"], "wrong_asr": ["港交索", "港交所有"], "local_replace": true },
+      { "canonical": "港股", "aliases": ["Hong Kong stocks"], "wrong_asr": ["港谷"], "local_replace": false },
+      { "canonical": "H 股", "aliases": ["H-shares"], "wrong_asr": ["H谷", "H骨"], "local_replace": true },
+      { "canonical": "A 股", "aliases": ["A-shares"], "wrong_asr": ["A谷", "A骨"], "local_replace": true },
+      { "canonical": "A+H", "aliases": ["A 股和 H 股两地上市"], "wrong_asr": ["A加H"], "local_replace": false },
+      { "canonical": "红筹", "aliases": ["red chip"], "wrong_asr": ["红愁", "红畴"], "local_replace": true },
+      { "canonical": "蓝筹", "aliases": ["blue chip"], "wrong_asr": ["蓝愁", "蓝畴"], "local_replace": true },
+      { "canonical": "中概股", "aliases": ["Chinese ADR"], "wrong_asr": ["中盖股", "中钙股"], "local_replace": true },
+      { "canonical": "港股通", "aliases": ["Stock Connect"], "wrong_asr": ["港股同"], "local_replace": false },
+      { "canonical": "北向资金", "aliases": ["northbound funds"], "wrong_asr": ["北上资金"], "local_replace": false },
+      { "canonical": "南向资金", "aliases": ["southbound funds"], "wrong_asr": ["南上资金"], "local_replace": false },
+      { "canonical": "恒生指数", "aliases": ["HSI"], "wrong_asr": ["恒升指数"], "local_replace": false },
+      { "canonical": "恒生科技指数", "aliases": ["HSTECH"], "wrong_asr": ["恒升科技指数"], "local_replace": false }
+    ]
+  },
+  {
+    "category": "us_equity",
+    "terms": [
+      { "canonical": "美股", "aliases": ["US stocks"], "wrong_asr": ["美国股票"], "local_replace": false },
+      { "canonical": "NYSE", "aliases": ["纽交所", "New York Stock Exchange"], "wrong_asr": ["纽约所", "纽交索"], "local_replace": true },
+      { "canonical": "Nasdaq", "aliases": ["纳斯达克"], "wrong_asr": ["纳指达克", "纳斯打克"], "local_replace": true },
+      { "canonical": "ADR", "aliases": ["American Depositary Receipt"], "wrong_asr": ["A D R"], "local_replace": true },
+      { "canonical": "ADS", "aliases": ["American Depositary Share"], "wrong_asr": ["A D S"], "local_replace": true },
+      { "canonical": "SPAC", "aliases": ["特殊目的收购公司"], "wrong_asr": ["斯派克", "S P A C"], "local_replace": true },
+      { "canonical": "de-SPAC", "aliases": ["SPAC 合并上市"], "wrong_asr": ["D SPAC", "低SPAC"], "local_replace": false },
+      { "canonical": "S-1", "aliases": ["美股注册声明"], "wrong_asr": ["S1"], "local_replace": false },
+      { "canonical": "F-1", "aliases": ["外国发行人注册声明"], "wrong_asr": ["F1"], "local_replace": false },
+      { "canonical": "10-K", "aliases": ["annual report"], "wrong_asr": ["ten K", "10K"], "local_replace": false },
+      { "canonical": "10-Q", "aliases": ["quarterly report"], "wrong_asr": ["ten Q", "10Q"], "local_replace": false },
+      { "canonical": "8-K", "aliases": ["current report"], "wrong_asr": ["eight K", "8K"], "local_replace": false },
+      { "canonical": "PIPE", "aliases": ["private investment in public equity"], "wrong_asr": ["派普"], "local_replace": false },
+      { "canonical": "secondary offering", "aliases": ["二级发行", "二次发行"], "wrong_asr": ["second offering"], "local_replace": false }
+    ]
+  },
+  {
+    "category": "financial_statements",
+    "terms": [
+      { "canonical": "收入", "aliases": ["revenue"], "wrong_asr": [], "local_replace": false },
+      { "canonical": "毛利", "aliases": ["gross profit"], "wrong_asr": ["毛力"], "local_replace": false },
+      { "canonical": "毛利率", "aliases": ["gross margin"], "wrong_asr": ["毛力率"], "local_replace": false },
+      { "canonical": "净利润", "aliases": ["net profit", "net income"], "wrong_asr": ["净利率"], "local_replace": false },
+      { "canonical": "经调整净利润", "aliases": ["adjusted net profit"], "wrong_asr": ["经调整近利润"], "local_replace": false },
+      { "canonical": "EBITDA", "aliases": ["息税折旧摊销前利润"], "wrong_asr": ["一比达", "E B I T D A"], "local_replace": true },
+      { "canonical": "EBIT", "aliases": ["息税前利润"], "wrong_asr": ["E B I T"], "local_replace": true },
+      { "canonical": "自由现金流", "aliases": ["FCF", "free cash flow"], "wrong_asr": ["自由现金牛"], "local_replace": false },
+      { "canonical": "经营现金流", "aliases": ["operating cash flow", "OCF"], "wrong_asr": ["经营性现金流"], "local_replace": false },
+      { "canonical": "CapEx", "aliases": ["资本开支"], "wrong_asr": ["cap x", "资本开资"], "local_replace": true },
+      { "canonical": "OpEx", "aliases": ["运营支出"], "wrong_asr": ["op x"], "local_replace": true },
+      { "canonical": "NWC", "aliases": ["净营运资本"], "wrong_asr": ["N W C"], "local_replace": true },
+      { "canonical": "折旧", "aliases": ["depreciation"], "wrong_asr": ["折就"], "local_replace": false },
+      { "canonical": "摊销", "aliases": ["amortization"], "wrong_asr": ["贪销"], "local_replace": false },
+      { "canonical": "减值", "aliases": ["impairment"], "wrong_asr": ["剪纸"], "local_replace": false }
+    ]
+  },
+  {
+    "category": "valuation_modeling",
+    "terms": [
+      { "canonical": "DCF", "aliases": ["现金流折现"], "wrong_asr": ["D C F"], "local_replace": true },
+      { "canonical": "WACC", "aliases": ["加权平均资本成本"], "wrong_asr": ["瓦克", "W A C C"], "local_replace": true },
+      { "canonical": "终值", "aliases": ["terminal value"], "wrong_asr": ["中值"], "local_replace": false },
+      { "canonical": "永续增长率", "aliases": ["perpetual growth rate"], "wrong_asr": ["永久增长率"], "local_replace": false },
+      { "canonical": "退出倍数", "aliases": ["exit multiple"], "wrong_asr": ["推出倍数"], "local_replace": false },
+      { "canonical": "可比公司法", "aliases": ["trading comparables", "comparable company analysis"], "wrong_asr": ["可比公私法"], "local_replace": false },
+      { "canonical": "可比交易法", "aliases": ["transaction comparables", "precedent transaction analysis"], "wrong_asr": ["可比交易发"], "local_replace": false },
+      { "canonical": "EV/Revenue", "aliases": ["企业价值收入倍数"], "wrong_asr": ["EV Revenue"], "local_replace": false },
+      { "canonical": "EV/EBITDA", "aliases": ["企业价值 EBITDA 倍数"], "wrong_asr": ["EV EBITDA"], "local_replace": true },
+      { "canonical": "P/E", "aliases": ["市盈率"], "wrong_asr": ["P E"], "local_replace": true },
+      { "canonical": "P/B", "aliases": ["市净率"], "wrong_asr": ["P B"], "local_replace": true },
+      { "canonical": "P/S", "aliases": ["市销率"], "wrong_asr": ["P S"], "local_replace": true },
+      { "canonical": "PEG", "aliases": ["市盈增长比"], "wrong_asr": ["P E G"], "local_replace": true },
+      { "canonical": "敏感性分析", "aliases": ["sensitivity analysis"], "wrong_asr": ["敏感型分析"], "local_replace": false },
+      { "canonical": "情景分析", "aliases": ["scenario analysis"], "wrong_asr": ["场景分析"], "local_replace": false }
+    ]
+  },
+  {
+    "category": "pe_vc_funds",
+    "terms": [
+      { "canonical": "GP", "aliases": ["普通合伙人"], "wrong_asr": ["G P"], "local_replace": true },
+      { "canonical": "LP", "aliases": ["有限合伙人"], "wrong_asr": ["L P"], "local_replace": true },
+      { "canonical": "IRR", "aliases": ["内部收益率"], "wrong_asr": ["I R R"], "local_replace": true },
+      { "canonical": "MOIC", "aliases": ["multiple on invested capital"], "wrong_asr": ["莫伊克", "毛伊克", "M O I C"], "local_replace": true },
+      { "canonical": "DPI", "aliases": ["distributed to paid-in capital"], "wrong_asr": ["D P I"], "local_replace": true },
+      { "canonical": "TVPI", "aliases": ["total value to paid-in capital"], "wrong_asr": ["T V P I"], "local_replace": true },
+      { "canonical": "RVPI", "aliases": ["residual value to paid-in capital"], "wrong_asr": ["R V P I"], "local_replace": true },
+      { "canonical": "capital call", "aliases": ["资本召缴"], "wrong_asr": ["资本召集", "资本召缴"], "local_replace": false },
+      { "canonical": "carry", "aliases": ["carried interest"], "wrong_asr": ["凯瑞分成"], "local_replace": false },
+      { "canonical": "hurdle rate", "aliases": ["门槛收益率"], "wrong_asr": ["hurdle rate"], "local_replace": false },
+      { "canonical": "dry powder", "aliases": ["可投资金", "待投资本"], "wrong_asr": ["干火药"], "local_replace": false },
+      { "canonical": "portfolio company", "aliases": ["被投企业"], "wrong_asr": ["portfolio 公司"], "local_replace": false },
+      { "canonical": "exit", "aliases": ["退出"], "wrong_asr": [], "local_replace": false },
+      { "canonical": "secondary", "aliases": ["二级份额转让"], "wrong_asr": [], "local_replace": false },
+      { "canonical": "co-invest", "aliases": ["跟投", "共同投资"], "wrong_asr": ["co investment"], "local_replace": false }
+    ]
+  },
+  {
+    "category": "fixed_income_convertibles",
+    "terms": [
+      { "canonical": "票息", "aliases": ["coupon"], "wrong_asr": ["票西"], "local_replace": false },
+      { "canonical": "到期收益率", "aliases": ["yield to maturity", "YTM"], "wrong_asr": ["到期收益例"], "local_replace": false },
+      { "canonical": "久期", "aliases": ["duration"], "wrong_asr": ["酒期"], "local_replace": false },
+      { "canonical": "凸性", "aliases": ["convexity"], "wrong_asr": ["图形"], "local_replace": false },
+      { "canonical": "信用利差", "aliases": ["credit spread"], "wrong_asr": ["信用力差"], "local_replace": false },
+      { "canonical": "可转债", "aliases": ["convertible bond"], "wrong_asr": ["可转帐"], "local_replace": false },
+      { "canonical": "可交换债", "aliases": ["exchangeable bond"], "wrong_asr": ["可交换帐"], "local_replace": false },
+      { "canonical": "优先股", "aliases": ["preferred stock"], "wrong_asr": ["优先谷"], "local_replace": false },
+      { "canonical": "永续债", "aliases": ["perpetual bond"], "wrong_asr": ["永久债"], "local_replace": false },
+      { "canonical": "高收益债", "aliases": ["high-yield bond"], "wrong_asr": ["高收债"], "local_replace": false },
+      { "canonical": "投资级债", "aliases": ["investment-grade bond"], "wrong_asr": ["投级债"], "local_replace": false }
+    ]
+  },
+  {
+    "category": "china_a_share_market",
+    "terms": [
+      { "canonical": "上交所", "aliases": ["上海证券交易所", "SSE"], "wrong_asr": ["上交索"], "local_replace": true },
+      { "canonical": "深交所", "aliases": ["深圳证券交易所", "SZSE"], "wrong_asr": ["深交索"], "local_replace": true },
+      { "canonical": "北交所", "aliases": ["北京证券交易所", "BSE"], "wrong_asr": ["北交索"], "local_replace": true },
+      { "canonical": "科创板", "aliases": ["STAR Market"], "wrong_asr": ["科创版", "科创办"], "local_replace": true },
+      { "canonical": "创业板", "aliases": ["ChiNext"], "wrong_asr": ["创业版"], "local_replace": true },
+      { "canonical": "新三板", "aliases": ["全国股转系统", "NEEQ"], "wrong_asr": ["新三版"], "local_replace": true },
+      { "canonical": "注册制", "aliases": ["registration-based IPO system"], "wrong_asr": ["注册字"], "local_replace": false },
+      { "canonical": "核准制", "aliases": ["approval-based IPO system"], "wrong_asr": ["核准字"], "local_replace": false },
+      { "canonical": "询价", "aliases": ["bookbuilding inquiry"], "wrong_asr": ["寻价"], "local_replace": false },
+      { "canonical": "打新", "aliases": ["IPO subscription"], "wrong_asr": ["打心"], "local_replace": false },
+      { "canonical": "限售股", "aliases": ["restricted shares"], "wrong_asr": ["限受股"], "local_replace": false },
+      { "canonical": "解禁", "aliases": ["lock-up expiry"], "wrong_asr": ["解径"], "local_replace": false },
+      { "canonical": "大宗交易", "aliases": ["block trade"], "wrong_asr": ["大众交易"], "local_replace": false },
+      { "canonical": "融资融券", "aliases": ["margin trading and securities lending"], "wrong_asr": ["融资融卷"], "local_replace": false },
+      { "canonical": "沪股通", "aliases": ["Shanghai Stock Connect"], "wrong_asr": ["沪股同"], "local_replace": false },
+      { "canonical": "深股通", "aliases": ["Shenzhen Stock Connect"], "wrong_asr": ["深股同"], "local_replace": false },
+      { "canonical": "沪深 300", "aliases": ["CSI 300"], "wrong_asr": ["沪深三百"], "local_replace": false },
+      { "canonical": "中证 500", "aliases": ["CSI 500"], "wrong_asr": ["中证五百"], "local_replace": false },
+      { "canonical": "中证 1000", "aliases": ["CSI 1000"], "wrong_asr": ["中证一千"], "local_replace": false },
+      { "canonical": "北证 50", "aliases": ["BSE 50"], "wrong_asr": ["北证五十"], "local_replace": false }
+    ]
+  },
+  {
+    "category": "trading_market_data",
+    "terms": [
+      { "canonical": "市值", "aliases": ["market cap", "market capitalization"], "wrong_asr": ["实值"], "local_replace": false },
+      { "canonical": "流通市值", "aliases": ["free-float market cap"], "wrong_asr": ["流通实值"], "local_replace": false },
+      { "canonical": "成交量", "aliases": ["trading volume"], "wrong_asr": ["成交亮"], "local_replace": false },
+      { "canonical": "成交额", "aliases": ["turnover"], "wrong_asr": ["成交鹅"], "local_replace": false },
+      { "canonical": "换手率", "aliases": ["turnover ratio"], "wrong_asr": ["换首率"], "local_replace": false },
+      { "canonical": "买一", "aliases": ["best bid"], "wrong_asr": ["买衣"], "local_replace": false },
+      { "canonical": "卖一", "aliases": ["best ask"], "wrong_asr": ["卖衣"], "local_replace": false },
+      { "canonical": "买卖价差", "aliases": ["bid-ask spread"], "wrong_asr": ["买卖价叉"], "local_replace": false },
+      { "canonical": "限价单", "aliases": ["limit order"], "wrong_asr": ["限价胆"], "local_replace": false },
+      { "canonical": "市价单", "aliases": ["market order"], "wrong_asr": ["市价胆"], "local_replace": false },
+      { "canonical": "止损单", "aliases": ["stop-loss order"], "wrong_asr": ["止损胆"], "local_replace": false },
+      { "canonical": "做空", "aliases": ["short selling"], "wrong_asr": ["做控"], "local_replace": false },
+      { "canonical": "卖空", "aliases": ["short sale"], "wrong_asr": ["卖控"], "local_replace": false },
+      { "canonical": "保证金", "aliases": ["margin"], "wrong_asr": ["保证今"], "local_replace": false },
+      { "canonical": "追加保证金", "aliases": ["margin call"], "wrong_asr": ["追加保证今"], "local_replace": false },
+      { "canonical": "停牌", "aliases": ["trading halt"], "wrong_asr": ["停排"], "local_replace": false },
+      { "canonical": "复牌", "aliases": ["trading resumption"], "wrong_asr": ["复排"], "local_replace": false },
+      { "canonical": "涨停", "aliases": ["limit up"], "wrong_asr": ["涨亭"], "local_replace": false },
+      { "canonical": "跌停", "aliases": ["limit down"], "wrong_asr": ["跌亭"], "local_replace": false }
+    ]
+  },
+  {
+    "category": "funds_etf_reits",
+    "terms": [
+      { "canonical": "ETF", "aliases": ["exchange-traded fund", "交易型开放式指数基金"], "wrong_asr": ["E T F"], "local_replace": true },
+      { "canonical": "REITs", "aliases": ["real estate investment trusts", "不动产投资信托基金"], "wrong_asr": ["瑞兹", "REITS"], "local_replace": true },
+      { "canonical": "公募基金", "aliases": ["mutual fund"], "wrong_asr": ["公募资金"], "local_replace": false },
+      { "canonical": "私募基金", "aliases": ["private fund"], "wrong_asr": ["私募资金"], "local_replace": false },
+      { "canonical": "货币基金", "aliases": ["money market fund"], "wrong_asr": ["货币资金"], "local_replace": false },
+      { "canonical": "指数基金", "aliases": ["index fund"], "wrong_asr": ["指数资金"], "local_replace": false },
+      { "canonical": "QDII", "aliases": ["合格境内机构投资者"], "wrong_asr": ["Q D I I"], "local_replace": true },
+      { "canonical": "QFII", "aliases": ["合格境外机构投资者"], "wrong_asr": ["Q F I I"], "local_replace": true },
+      { "canonical": "LOF", "aliases": ["listed open-ended fund"], "wrong_asr": ["L O F"], "local_replace": true },
+      { "canonical": "FOF", "aliases": ["fund of funds"], "wrong_asr": ["F O F"], "local_replace": true },
+      { "canonical": "NAV", "aliases": ["净值", "net asset value"], "wrong_asr": ["N A V"], "local_replace": true },
+      { "canonical": "AUM", "aliases": ["资产管理规模", "assets under management"], "wrong_asr": ["A U M"], "local_replace": true },
+      { "canonical": "管理费", "aliases": ["management fee"], "wrong_asr": ["管理废"], "local_replace": false },
+      { "canonical": "托管费", "aliases": ["custodian fee"], "wrong_asr": ["托管废"], "local_replace": false },
+      { "canonical": "申购", "aliases": ["subscription"], "wrong_asr": ["深购"], "local_replace": false },
+      { "canonical": "赎回", "aliases": ["redemption"], "wrong_asr": ["熟回"], "local_replace": false }
+    ]
+  },
+  {
+    "category": "derivatives_risk",
+    "terms": [
+      { "canonical": "期权", "aliases": ["option"], "wrong_asr": ["齐全"], "local_replace": false },
+      { "canonical": "期货", "aliases": ["futures"], "wrong_asr": ["齐货"], "local_replace": false },
+      { "canonical": "互换", "aliases": ["swap"], "wrong_asr": ["互唤"], "local_replace": false },
+      { "canonical": "远期", "aliases": ["forward"], "wrong_asr": ["远其"], "local_replace": false },
+      { "canonical": "权证", "aliases": ["warrant"], "wrong_asr": ["权正"], "local_replace": false },
+      { "canonical": "牛熊证", "aliases": ["CBBC"], "wrong_asr": ["牛熊正"], "local_replace": false },
+      { "canonical": "Delta", "aliases": ["德尔塔"], "wrong_asr": ["delta"], "local_replace": false },
+      { "canonical": "Gamma", "aliases": ["伽马"], "wrong_asr": ["gamma"], "local_replace": false },
+      { "canonical": "Vega", "aliases": ["维加"], "wrong_asr": ["vega"], "local_replace": false },
+      { "canonical": "Theta", "aliases": ["西塔"], "wrong_asr": ["theta"], "local_replace": false },
+      { "canonical": "隐含波动率", "aliases": ["implied volatility", "IV"], "wrong_asr": ["隐含波动绿"], "local_replace": false },
+      { "canonical": "行权价", "aliases": ["strike price"], "wrong_asr": ["行全价"], "local_replace": false },
+      { "canonical": "名义本金", "aliases": ["notional principal"], "wrong_asr": ["名义本今"], "local_replace": false },
+      { "canonical": "对冲", "aliases": ["hedging"], "wrong_asr": ["对充"], "local_replace": false },
+      { "canonical": "敞口", "aliases": ["exposure"], "wrong_asr": ["窗口"], "local_replace": false }
+    ]
+  },
+  {
+    "category": "accounting_reporting",
+    "terms": [
+      { "canonical": "资产负债表", "aliases": ["balance sheet"], "wrong_asr": ["资产负责表"], "local_replace": false },
+      { "canonical": "利润表", "aliases": ["income statement", "P&L"], "wrong_asr": ["利润标"], "local_replace": false },
+      { "canonical": "现金流量表", "aliases": ["cash flow statement"], "wrong_asr": ["现金流量标"], "local_replace": false },
+      { "canonical": "营业收入", "aliases": ["operating revenue"], "wrong_asr": ["营业收录"], "local_replace": false },
+      { "canonical": "营业成本", "aliases": ["COGS", "cost of goods sold"], "wrong_asr": ["营业城本"], "local_replace": false },
+      { "canonical": "销售费用", "aliases": ["selling expense"], "wrong_asr": ["销售废用"], "local_replace": false },
+      { "canonical": "管理费用", "aliases": ["G&A expense"], "wrong_asr": ["管理废用"], "local_replace": false },
+      { "canonical": "研发费用", "aliases": ["R&D expense"], "wrong_asr": ["研发废用"], "local_replace": false },
+      { "canonical": "应收账款", "aliases": ["accounts receivable", "AR"], "wrong_asr": ["应收帐款"], "local_replace": false },
+      { "canonical": "应付账款", "aliases": ["accounts payable", "AP"], "wrong_asr": ["应付帐款"], "local_replace": false },
+      { "canonical": "存货", "aliases": ["inventory"], "wrong_asr": ["存活"], "local_replace": false },
+      { "canonical": "递延收入", "aliases": ["deferred revenue"], "wrong_asr": ["递延收录"], "local_replace": false },
+      { "canonical": "商誉", "aliases": ["goodwill"], "wrong_asr": ["商业"], "local_replace": false },
+      { "canonical": "无形资产", "aliases": ["intangible assets"], "wrong_asr": ["无型资产"], "local_replace": false },
+      { "canonical": "少数股东权益", "aliases": ["minority interest"], "wrong_asr": ["少数股东全益"], "local_replace": false }
+    ]
+  }
+]
