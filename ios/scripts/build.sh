@@ -7,7 +7,7 @@ case "$mode" in simulator|archive) ;; *) echo 'Usage: build.sh [simulator|archiv
 command -v xcodebuild >/dev/null || { echo 'A Mac with Xcode is required. Simulator builds do not require a paid Apple membership. No iOS binary has been built.' >&2; exit 2; }
 python3 scripts/generate_project.py
 python3 scripts/verify_project.py
-xcode_version=$(xcodebuild -version | head -1 | awk '{print $2}')
+xcode_version=$(xcodebuild -version | awk '/^Xcode / {print $2}')
 if [[ $mode == archive ]]; then
   [[ ${xcode_version%%.*} -ge 26 ]] || { echo 'App Store uploads require Xcode 26 or later.' >&2; exit 2; }
   test -f Local.xcconfig || { echo 'Configure the real DEVELOPMENT_TEAM in Local.xcconfig before archiving.' >&2; exit 2; }
