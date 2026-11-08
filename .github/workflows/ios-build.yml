@@ -1,0 +1,32 @@
+name: Verify free iOS build and launch
+on:
+  push:
+    branches: [build/komorebi-ios-free]
+    paths:
+      - ios/**
+      - .github/workflows/ios-build.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: komorebi-ios-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  build:
+    # A standard public-repository runner, never a larger paid runner.
+    runs-on: macos-26
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Record actual Xcode and simulator versions
+        run: |
+          xcodebuild -version
+          xcrun simctl list runtimes
+      - name: Verify free target and compile with Xcode
+        run: bash ios/scripts/build.sh simulator
+      - name: Install and launch the compiled application
+        run: bash ios/scripts/smoke_simulator.sh
+      # No cache or artifact upload: do not create billable storage during this verification.
+      # The screenshot/app exist on this job's temporary Mac only; logs remain the proof.
