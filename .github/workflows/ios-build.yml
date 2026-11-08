@@ -26,6 +26,11 @@ jobs:
           xcrun simctl list runtimes
       - name: Verify free target and compile with Xcode
         run: bash ios/scripts/build.sh simulator
+      - name: Compile unsigned iPhone release
+        run: |
+          xcodebuild -project ios/Komorebi.xcodeproj -scheme Komorebi \
+            -configuration Release -destination 'generic/platform=iOS' \
+            -derivedDataPath ios/build/DeviceDerivedData CODE_SIGNING_ALLOWED=NO build
       - name: Install and launch the compiled application
         run: bash ios/scripts/smoke_simulator.sh
       # No cache or artifact upload: do not create billable storage during this verification.
