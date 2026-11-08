@@ -33,9 +33,21 @@ struct PlayView: View {
                     VStack(alignment: .leading, spacing: 15) {
                         Text("四子棋 · 双人小棋盘").font(.title2.bold())
                         Text(game.winner == 0 ? "轮到\(game.turn == 1 ? "粉色" : "蓝色")，点击想落子的列。" : "\(game.winner == 1 ? "粉色" : "蓝色")赢了，再来一局？").font(.subheadline).foregroundStyle(.secondary)
-                        HStack(spacing: 6) { ForEach(0..<7) { column in
-                            Button { game.drop(column) } label: { VStack(spacing: 7) { ForEach(0..<6) { row in Circle().fill(game.cells[row * 7 + column] == 1 ? Color.pink : game.cells[row * 7 + column] == 2 ? Color.cyan : Color.white.opacity(0.10)).aspectRatio(1, contentMode: .fit) } }.accessibilityLabel("第 \(column + 1) 列落子").accessibilityIdentifier("connect-column-\(column)")
-                        } }.padding(12).background(.indigo.opacity(0.3), in: RoundedRectangle(cornerRadius: 18))
+                        HStack(spacing: 6) {
+                            ForEach(0..<7) { column in
+                                Button { game.drop(column) } label: {
+                                    VStack(spacing: 7) {
+                                        ForEach(0..<6) { row in
+                                            Circle()
+                                                .fill(game.cells[row * 7 + column] == 1 ? Color.pink : game.cells[row * 7 + column] == 2 ? Color.cyan : Color.white.opacity(0.10))
+                                                .aspectRatio(1, contentMode: .fit)
+                                        }
+                                    }
+                                }
+                                .accessibilityLabel("第 \(column + 1) 列落子")
+                                .accessibilityIdentifier("connect-column-\(column)")
+                            }
+                        }.padding(12).background(.indigo.opacity(0.3), in: RoundedRectangle(cornerRadius: 18))
                         Button("重新开始") { game = ConnectFour() }
                     }
                     VStack(alignment: .leading, spacing: 14) {
